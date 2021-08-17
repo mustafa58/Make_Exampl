@@ -1,0 +1,19 @@
+CC=gcc
+CFLAGS=-g -Wall
+SRC=$(wildcard src/*.c)
+OBJ=$(patsubst src/%.c, obj/%.o, $(SRC))
+BIN=bin/main
+
+all: $(BIN)
+
+release: CFLAGS=-Wall -O2 -DNDEBUG
+release: clean
+release: $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -O $@
+obj/%.o: src/%.c src/%.h
+	$(CC) $(CFLAGS) -c $< -o $@
+clean:
+	rm -r bin/* obj/*
+
