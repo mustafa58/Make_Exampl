@@ -9,7 +9,7 @@ OBJ=$(patsubst src/%.c, obj/%.o, $(SRC)) # Be carefull about variable deferred e
 BULDIR=$(subst src,obj, $(call dirsunder, src))
 BIN=bin/main
 
-all: $(BIN) 
+all: $(BIN)
 
 release: CFLAGS=-Wall -O2 -DNDEBUG
 release: clean
